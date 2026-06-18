@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智创视界 - 创意流水线原型</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">▶</div>
+          <div>
+            <strong>智创视界</strong>
+            <span>AI短视频生产与投放平台</span>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active">选题池</button>
+          <button class="nav-item">原始视频库</button>
+          <button class="nav-item">下载任务</button>
+          <button class="nav-item">视频拆解</button>
+          <button class="nav-item">文案工坊</button>
+          <button class="nav-item">拍摄任务</button>
+          <button class="nav-item">素材片段库</button>
+          <button class="nav-item">混剪工作台</button>
+          <button class="nav-item">投放上传</button>
+          <button class="nav-item">数据复盘</button>
+          <button class="nav-item">产品知识库</button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button id="collapseBtn">收起菜单</button>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <h1>创意流水线</h1>
+            <p>从对标视频到上传投放的全流程可视化与协同</p>
+          </div>
+          <div class="top-actions">
+            <label class="search">
+              <span>⌕</span>
+              <input id="searchInput" type="search" placeholder="搜索视频、文案、任务、素材..." />
+            </label>
+            <button class="ghost">帮助中心</button>
+            <button class="avatar">张晓明</button>
+          </div>
+        </header>
+
+        <section class="metrics" aria-label="今日数据">
+          <article class="metric">
+            <span>今日采集</span>
+            <strong>186</strong>
+            <em class="up">较昨日 +32%</em>
+          </article>
+          <article class="metric">
+            <span>已下载原视频</span>
+            <strong>1,236</strong>
+            <em class="up">近7天入库</em>
+          </article>
+          <article class="metric">
+            <span>可改写视频</span>
+            <strong>248</strong>
+            <em class="up">较昨日 +18%</em>
+          </article>
+          <article class="metric">
+            <span>待审核文案</span>
+            <strong>72</strong>
+            <em class="down">较昨日 -8%</em>
+          </article>
+          <article class="metric">
+            <span>待混剪素材</span>
+            <strong>156</strong>
+            <em class="up">较昨日 +26%</em>
+          </article>
+          <article class="metric">
+            <span>待上传素材</span>
+            <strong>38</strong>
+            <em class="down">较昨日 -12%</em>
+          </article>
+          <article class="metric alert">
+            <span>异常任务</span>
+            <strong>9</strong>
+            <em>较昨日 +3</em>
+          </article>
+        </section>
+
+        <section class="filters">
+          <div class="source-note">
+            <strong>抓取视频展示区：</strong>
+            <span>按关键词/账号/类目/时间范围批量下载后，原视频先进入「原始视频库」；AI 转写、拆结构、评分后，筛选出的才进入下方「候选视频」列。</span>
+          </div>
+          <button class="library-btn" id="openLibrary">查看原始视频库</button>
+          <button class="library-btn" id="openDownloadTask">新建批量下载任务</button>
+          <button class="library-btn primary-lite" id="runSample">跑通当前样本</button>
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="hook">高钩子</button>
+          <button class="filter" data-filter="programming">编程相关</button>
+          <button class="filter" data-filter="risk">有风险</button>
+          <button class="filter" data-filter="shoot">待拍摄</button>
+          <button class="filter" data-filter="upload">待上传</button>
+        </section>
+
+        <section class="board" aria-label="创意流水线看板">
+          <div class="column" data-column="候选视频">
+            <div class="column-head"><strong>候选视频</strong><span>128</span></div>
+            <div class="card-list" id="col-candidate"></div>
+          </div>
+          <div class="column" data-column="待改写">
+            <div class="column-head"><strong>待改写</strong><span>85</span></div>
+            <div class="card-list" id="col-rewrite"></div>
+          </div>
+          <div class="column" data-column="文案生成中">
+            <div class="column-head"><strong>文案生成中</strong><span>36</span></div>
+            <div class="card-list" id="col-script"></div>
+          </div>
+          <div class="column" data-column="待拍摄">
+            <div class="column-head"><strong>待拍摄</strong><span>24</span></div>
+            <div class="card-list" id="col-shoot"></div>
+          </div>
+          <div class="column" data-column="待混剪">
+            <div class="column-head"><strong>待混剪</strong><span>18</span></div>
+            <div class="card-list" id="col-edit"></div>
+          </div>
+          <div class="column" data-column="初剪审核">
+            <div class="column-head"><strong>初剪审核</strong><span>12</span></div>
+            <div class="card-list" id="col-review"></div>
+          </div>
+          <div class="column upload-column" data-column="待上传">
+            <div class="column-head"><strong>待上传</strong><span>8</span></div>
+            <div class="upload-box">
+              <div class="platforms"><b>抖</b><b>巨</b><b>企</b></div>
+              <p>初中英语逆袭的3个关键习惯</p>
+              <span>计划时间 06/17</span>
+              <button class="mini-btn">查看上传任务</button>
+            </div>
+            <div class="card-list" id="col-upload"></div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="inspector">
+        <button class="close" id="closeInspector">×</button>
+        <h2>对标价值拆解</h2>
+        <div id="detailPanel"></div>
+      </aside>
+    </div>
+
+    <div class="modal-backdrop" id="libraryModal" aria-hidden="true">
+      <section class="modal">
+        <div class="modal-head">
+          <div>
+            <h2>原始视频库</h2>
+            <p>批量下载好的视频统一存放在这里，完成转写和拆解后再进入候选视频。</p>
+          </div>
+          <button class="close" id="closeLibrary">×</button>
+        </div>
+        <div class="library-summary">
+          <div><span>近7天下载</span><strong>1,236</strong></div>
+          <div><span>待转写</span><strong>184</strong></div>
+          <div><span>已拆解</span><strong>892</strong></div>
+          <div><span>进入候选</span><strong>248</strong></div>
+        </div>
+        <div class="download-task">
+          <strong>当前下载任务</strong>
+          <span>关键词：少儿编程 / Python入门 / 思维训练 · 账号：12个 · 时间范围：近7天 · 状态：下载中 68%</span>
+        </div>
+        <table class="library-table">
+          <thead>
+            <tr>
+              <th>原视频</th>
+              <th>来源</th>
+              <th>存储位置</th>
+              <th>处理状态</th>
+              <th>候选状态</th>
+            </tr>
+          </thead>
+          <tbody id="libraryRows"></tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="pipelineModal" aria-hidden="true">
+      <section class="modal pipeline-modal">
+        <div class="modal-head">
+          <div>
+            <h2>单条视频处理流水线</h2>
+            <p>把一个真实视频从下载入库跑到文案、拍摄和混剪图纸。</p>
+          </div>
+          <button class="close" id="closePipeline">×</button>
+        </div>
+        <div id="pipelineBody"></div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast">已生成拍摄任务单</div>
+    <script src="script.js"></script>
+  </body>
+</html>
